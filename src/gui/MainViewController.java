@@ -20,33 +20,33 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	private MenuItem menuItemSeller;
-
+	
 	@FXML
 	private MenuItem menuItemDepartment;
-
+	
 	@FXML
 	private MenuItem menuItemAbout;
 
 	@FXML
 	public void onMenuItemSellerAction() {
-		System.out.println("onMenuSellerAction");
+		System.out.println("onMenuItemSellerAction");
 	}
 
 	@FXML
 	public void onMenuItemDepartmentAction() {
 		loadView("/gui/DepartmentList.fxml");
 	}
-
+	
 	@FXML
 	public void onMenuItemAboutAction() {
 		loadView("/gui/About.fxml");
 	}
-
+	
 	@Override
-	public synchronized void initialize(URL uri, ResourceBundle rc) {
-
+	public void initialize(URL uri, ResourceBundle rb) {
 	}
-	private void loadView(String absoluteName) {
+	
+	private synchronized void loadView(String absoluteName) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			VBox newVBox = loader.load();
@@ -57,16 +57,11 @@ public class MainViewController implements Initializable {
 			Node mainMenu = mainVBox.getChildren().get(0);
 			mainVBox.getChildren().clear();
 			mainVBox.getChildren().add(mainMenu);
-			mainVBox.getChildren().addAll(newVBox.getChildren()); 
-			
-			
-		} catch (IOException e) {
-			Alerts.showAlert("IO Excepiton", "Error loading view", e.getMessage(), AlertType.ERROR);
+			mainVBox.getChildren().addAll(newVBox.getChildren());
 		}
-		
-		
-		
-		
+		catch (IOException e) {
+			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
+		}
 	}
-
+	
 }
