@@ -21,7 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.entities.Department;
 import model.exceptions.ValidationException;
-import model.service.DepartmentService;
+import model.services.DepartmentService;
 
 public class DepartmentFormController implements Initializable {
 
